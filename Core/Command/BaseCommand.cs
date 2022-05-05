@@ -9,10 +9,10 @@ namespace Cheese_factory.Core.Command
 {
     public class BaseCommand : ICommand
     {
-        private Action<object> _method;
-        private Predicate<object> _canExecute;
+        private readonly Action<object> _method;
+        private readonly Predicate<object> _canExecute;
 
-        public BaseCommand(Action<object> method) 
+        public BaseCommand(Action<object> method)
             : this(method, null)
         {
 
@@ -28,10 +28,7 @@ namespace Cheese_factory.Core.Command
 
         public bool CanExecute(object parameter)
         {
-            if (_canExecute is null)
-                return true;
-
-            return _canExecute(parameter);
+            return _canExecute is null ? true : _canExecute(parameter);
         }
 
         public void Execute(object parameter)
