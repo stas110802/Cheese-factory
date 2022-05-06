@@ -5,8 +5,57 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Cheese_factory.MVVM.View.UC"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="500" d:DesignWidth="800" Background="White">
     <Grid>
-            
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        
+        <Grid Grid.Row="0" VerticalAlignment="Top">
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Grid.Column="0" Grid.Row="0">
+                <Button  Content="Корма" Height="75" FontSize="20" Command="{Binding MainMenuControl.TestCommand}"/>
+            </StackPanel>
+
+            <StackPanel Grid.Column="0" Grid.Row="1">
+                <Button  Content="Склады корма" Height="75" FontSize="20" Command="{Binding MainMenuControl.TestCommand}"/>
+            </StackPanel>
+
+            <StackPanel Grid.Column="2" Grid.Row="0">
+                <Button  Content="Отчеты кормления" Height="75" FontSize="20" Command="{Binding MainMenuControl.TestCommand}"/>
+            </StackPanel>
+
+            <StackPanel Grid.Column="1" Grid.Row="0">
+                <Button  Content="Сборы молока" Height="75" FontSize="20" Command="{Binding MainMenuControl.TestCommand}"/>
+            </StackPanel>
+
+            <StackPanel Grid.Column="1" Grid.Row="1">
+                <Button  Content="Рабочие пары" Height="75" FontSize="20" Command="{Binding MainMenuControl.TestCommand}"/>
+            </StackPanel>
+
+            <StackPanel Grid.Column="1" Grid.Row="2">
+                <Button  Content="Коровы" Height="75" FontSize="20" Command="{Binding MainMenuControl.TestCommand}"/>
+            </StackPanel>
+
+            <StackPanel Grid.Column="2" Grid.Row="1">
+                <Button  Content="Сотрудники кормежки" Height="75" FontSize="20" Command="{Binding MainMenuControl.TestCommand}"/>
+            </StackPanel>
+        </Grid>
+        
+        <Grid Grid.Row="1">
+            <Frame x:Name="ScreenFrame" NavigationUIVisibility="Hidden"/>
+        </Grid>
+
     </Grid>
 </UserControl>

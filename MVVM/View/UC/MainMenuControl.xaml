@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Cheese_factory.MVVM.View.UC"
-             
+             xmlns:cmd="Cheese_factory.Core.Command"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800" >
     
@@ -22,7 +22,7 @@
             </Grid.ColumnDefinitions>
 
             <StackPanel Grid.Column="1" Grid.Row="0" VerticalAlignment="Center">
-                <Button x:Name="FarmButton" Content="Ферма" Height="70" FontSize="20" Command="{Binding MainMenuControl.TestCommand}"/>
+                <Button x:Name="FarmButton" Content="Ферма" Height="70" FontSize="20"/>
             </StackPanel>
 
             <StackPanel Grid.Column="1" Grid.Row="1" VerticalAlignment="Center">
