@@ -14,6 +14,6 @@ namespace Cheese_factory.MVVM.Model
         public int ID { get; set; }
 
         [Column("Площадь")]
-        public string FloorArea { get; set; }
+        public int FloorArea { get; set; }
     }
 }

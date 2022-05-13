@@ -12,7 +12,7 @@ namespace Cheese_factory.Core.Command
             _window = window;
         }
 
-        public static void ChangeToFarmUC(object obj)
+        public static void ChangeToFarmUC(object obj = null)
         {
             //_window.ScreenFrame.Navigate(new FarmControl());
         }
