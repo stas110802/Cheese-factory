@@ -1,4 +1,5 @@
 ﻿using Cheese_factory.Core.Command;
+using Cheese_factory.MVVM.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,7 +25,7 @@ namespace Cheese_factory.MVVM.View.UC
         public MainMenuControl()
         {
             InitializeComponent();
-            FarmButton.Command = new BaseCommand(MainWindowCommand.ChangeToFarmUC);
+            //DataContext = new MainMenuControlVM();
         }
     }
 

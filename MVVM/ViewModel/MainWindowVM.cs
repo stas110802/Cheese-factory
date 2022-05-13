@@ -19,7 +19,7 @@ namespace Cheese_factory.MVVM.ViewModel
         public MainWindowVM()
         {
             _screenFrame = new Frame();
-            _screenFrame.Navigate(new FarmControl());
+            FarmControlCommand = new BaseCommand(OpenFarmControl);
         }
 
         public Frame ScreenFrame 
@@ -28,6 +28,12 @@ namespace Cheese_factory.MVVM.ViewModel
             set => Set(ref _screenFrame, value, nameof(ScreenFrame));
         }
 
-        //public BaseCommand FarmControlCommand { get; private set; }
+        public BaseCommand FarmControlCommand { get; private set; } 
+
+        private void OpenFarmControl(object obj = null)
+        {
+            _screenFrame.Navigate(new FarmControl());
+        }
+
     }
 }

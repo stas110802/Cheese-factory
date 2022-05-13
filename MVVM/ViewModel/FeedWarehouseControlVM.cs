@@ -1,5 +1,6 @@
 ﻿using Cheese_factory.Core;
 using Cheese_factory.Core.Command;
+using Cheese_factory.Core.Interface;
 using Cheese_factory.MVVM.Model;
 using System;
 using System.Collections.Generic;
@@ -9,10 +10,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Input;
 
 namespace Cheese_factory.MVVM.ViewModel
 {
-    public sealed class FeedWarehouseControlVM : ObservableObject
+    public sealed class FeedWarehouseControlVM : ObservableObject, IDBItemsControl, IDisposable
     {
         private ObservableCollection<FeedWarehouse> _feedWarehouses;
         private ObservableCollection<Feed> _feeds;
@@ -22,7 +24,12 @@ namespace Cheese_factory.MVVM.ViewModel
         private Warehouse _selectedWarehouse;
         private int _count;
 
-        private readonly MyDBContext _dbContext;//todo add interface IDbContexter
+        private readonly MyDBContext _dbContext;//todo add interface IDBContexter
+
+        ~FeedWarehouseControlVM()
+        {
+            Dispose();
+        }
 
         public FeedWarehouseControlVM()
         {
@@ -78,6 +85,20 @@ namespace Cheese_factory.MVVM.ViewModel
         public BaseCommand DeleteItemCommand { get; set; }
         public BaseCommand UpdateItemsCommand { get; set; }
         public BaseCommand AddItemCommand { get; set; }
+        public BaseCommand ChangeItemCommand { get; set; }
+        public BaseCommand FeedWarehousesClickCommand { get; set; }
+
+        private void FeedWarehousesIsDoubleClick(object arg = null)
+        {
+            try
+            {
+                Count = SelectedFeedWarehouse.Count;
+                SelectedFeed = SelectedFeedWarehouse.Feed;
+                SelectedWarehouse = SelectedFeedWarehouse.Warehouse;
+            }
+            catch (Exception) { }
+        }
+
         private void InitFeeds()
         {
             foreach (var item in _dbContext.Feeds)
@@ -111,6 +132,34 @@ namespace Cheese_factory.MVVM.ViewModel
             DeleteItemCommand = new BaseCommand(DeleteSelectedItem);
             UpdateItemsCommand = new BaseCommand(UpdateFeedWarehouses);
             AddItemCommand = new BaseCommand(AddItem);
+            ChangeItemCommand = new BaseCommand(ChagneExistingItem);
+            FeedWarehousesClickCommand = new BaseCommand(FeedWarehousesIsDoubleClick);
+        }
+
+        private void ChagneExistingItem(object obj = null)
+        {
+            try
+            { 
+                var oldItem = _dbContext.FeedWarehouses.Find(SelectedFeedWarehouse.ID);
+
+                var newItem = new FeedWarehouse()
+                {
+                    ID = oldItem.ID,
+                    Count = Count,
+                    FeedFK = SelectedFeed.ID,
+                    WarehouseFK = SelectedWarehouse.ID
+                };
+
+                _dbContext
+                    .Entry(oldItem).CurrentValues
+                    .SetValues(newItem);
+                _dbContext.SaveChanges();
+                MessageBox.Show("OK");
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("SOME ERROR! {0}", ex.Message);
+            }
         }
 
         // todo вынести метод в отдельный класс
@@ -159,9 +208,9 @@ namespace Cheese_factory.MVVM.ViewModel
             
         }
 
-        ~FeedWarehouseControlVM()
+        public void Dispose()
         {
-            _dbContext.Dispose();
-        }
+            GC.SuppressFinalize(this);
+        } 
     }
 }

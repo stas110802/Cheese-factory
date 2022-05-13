@@ -14,7 +14,7 @@ namespace Cheese_factory
         public MainWindow()
         {
             InitializeComponent();
-            DataContext = new MainWindowVM();
+            ScreenFrame.Navigate(new FarmControl());
         }
     }
 }

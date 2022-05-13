@@ -49,11 +49,13 @@
                 <Border Height="25"/>
                 <StackPanel Grid.Row="0" Orientation="Horizontal">
                     <Border Width="50"/>
-                    <Button Content="Add" FontSize="20" Width="150" Command="{Binding AddItemCommand}"/>
+                    <Button Content="Add" FontSize="20" Width="100" Command="{Binding AddItemCommand}"/>
                     <Border Width="50"/>
-                    <Button Content="Delete" FontSize="20" Width="150" Command="{Binding DeleteItemCommand}"/>
+                    <Button Content="Delete" FontSize="20" Width="100" Command="{Binding DeleteItemCommand}"/>
                     <Border Width="50"/>
-                    <Button Content="Update" FontSize="20" Width="150" Command="{Binding UpdateItemsCommand}"/>
+                    <Button Content="Update" FontSize="20" Width="100" Command="{Binding UpdateItemsCommand}"/>
+                    <Border Width="50"/>
+                    <Button Content="Change" FontSize="20" Width="100" Command="{Binding ChangeItemCommand}"/>
                 </StackPanel>
             </StackPanel>
             
@@ -61,13 +63,21 @@
 
         <StackPanel Grid.Row="0" Orientation="Horizontal">
             <Border Width="25"/>
-            <DataGrid AutoGenerateColumns="False"  IsReadOnly="True" FontSize="20" ItemsSource="{Binding FeedWarehouses}" SelectedItem="{Binding Path=SelectedFeedWarehouse}">
+            <DataGrid 
+                AutoGenerateColumns="False" IsReadOnly="True" FontSize="20"
+                ItemsSource="{Binding FeedWarehouses}" SelectedItem="{Binding SelectedFeedWarehouse}">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="ID СК" Width="150" Binding="{Binding ID}"/>
                     <DataGridTextColumn Header="Количество" Width="150" Binding="{Binding Count}"/>
                     <DataGridTextColumn Header="FK Склад" Width="150" Binding="{Binding WarehouseFK}" />
                     <DataGridTextColumn Header="FK Корм" Width="150" Binding="{Binding FeedFK}"/>
                 </DataGrid.Columns>
+
+                <DataGrid.InputBindings>
+                    <MouseBinding
+                        MouseAction="LeftDoubleClick"
+                        Command="{Binding FeedWarehousesClickCommand}"/>
+                </DataGrid.InputBindings>
             </DataGrid>
         </StackPanel>
 
