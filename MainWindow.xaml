@@ -4,15 +4,16 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Cheese_factory"
+        xmlns:viewmodels="clr-namespace:Cheese_factory.MVVM.ViewModel"
+        d:DataContext="{d:DesignInstance Type=viewmodels:MainWindowVM}"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="900" Width="1000">
     <Window.Resources>
         
     </Window.Resources>
     <Grid>
         <Grid>
-            <Frame x:Name="ScreenFrame" NavigationUIVisibility="Hidden"/>
-            
+            <Frame NavigationUIVisibility="Hidden" Content="{Binding ScreenFrame, Mode=TwoWay}"/>
         </Grid>
     </Grid>
 </Window>

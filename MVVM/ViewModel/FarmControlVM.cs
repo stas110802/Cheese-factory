@@ -1,6 +1,6 @@
 ﻿using Cheese_factory.Core;
 using Cheese_factory.Core.Command;
-using Cheese_factory.MVVM.View.UC;
+using Cheese_factory.MVVM.View.UC.FarmControlUC;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,24 +10,29 @@ using System.Windows.Controls;
 
 namespace Cheese_factory.MVVM.ViewModel
 {
-    public sealed class MainWindowVM : ObservableObject
+    public sealed class FarmControlVM : ObservableObject
     {
         #region INotifyPropertyChanged fields
         private Frame _screenFrame;
         #endregion
 
-        public MainWindowVM()
+        public FarmControlVM()
         {
             _screenFrame = new Frame();
-            _screenFrame.Navigate(new FarmControl());
+            FeedWarehouseCommand = new BaseCommand(ChangeFeedWarehouseData);
         }
 
-        public Frame ScreenFrame 
-        { 
+        public Frame ScreenFrame
+        {
             get => _screenFrame;
             set => Set(ref _screenFrame, value, nameof(ScreenFrame));
         }
 
-        //public BaseCommand FarmControlCommand { get; private set; }
+        public BaseCommand FeedWarehouseCommand { get; private set; }
+
+        public void ChangeFeedWarehouseData(object arg = null)
+        {
+            _screenFrame.Navigate(new FeedWarehouseControl());
+        }
     }
 }

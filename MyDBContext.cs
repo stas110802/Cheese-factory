@@ -24,10 +24,13 @@ namespace Cheese_factory
         public DbSet<ProductWarehouse> ProductWarehouses { get; set; } // склада продуктов
         public DbSet<FeedWarehouse> FeedWarehouses { get; set; } // склада корма
         public DbSet<Equipment> Equipments { get; set; } // оборудования
+        public DbSet<EmployeeEquipment> EmployeeEquipments { get; set; } // оборудования сотрудников
         public DbSet<Cheese> Cheeses { get; set; } // сыры
         public DbSet<Batch> Consignments { get; set; } // партии
         public DbSet<BatchCheese> BatchCheeses { get; set; } // партии сыра
-        public DbSet<Storage> Storages { get; set; } // хранилище
+        public DbSet<Storage> Storages { get; set; } // хранилища
+        public DbSet<UsedStorage> UsedStorages { get; set; } // занятые хранилища
+        public DbSet<ProcessingStep> ProcessingSteps { get; set; } // этап обработок
 
     }
 }

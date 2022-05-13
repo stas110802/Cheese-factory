@@ -22,7 +22,7 @@
             </Grid.ColumnDefinitions>
 
             <StackPanel Grid.Column="1" Grid.Row="0" VerticalAlignment="Center">
-                <Button x:Name="FarmButton" Content="Ферма" Height="70" FontSize="20" Command="{Binding MainMenuControl.TestCommand}"/>
+                <Button x:Name="FarmButton" Content="Ферма" Height="70" FontSize="20" Command="{Binding FarmControlCommand}"/>
             </StackPanel>
 
             <StackPanel Grid.Column="1" Grid.Row="1" VerticalAlignment="Center">

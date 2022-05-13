@@ -7,13 +7,13 @@ using System.Threading.Tasks;
 
 namespace Cheese_factory.MVVM.Model
 {
-    [Table("Cклад")]
+    [Table("Склад")]
     public class Warehouse
     {
         [Column("ID_Склад")]
         public int ID { get; set; }
 
         [Column("Площадь")]
-        public string FloorArea { get; set; }
+        public int FloorArea { get; set; }
     }
 }

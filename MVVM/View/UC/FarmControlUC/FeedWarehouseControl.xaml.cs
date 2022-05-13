@@ -1,4 +1,5 @@
-﻿using Cheese_factory.MVVM.ViewModel;
+﻿using Cheese_factory.MVVM.Model;
+using Cheese_factory.MVVM.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,17 +15,17 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Cheese_factory.MVVM.View.UC
+namespace Cheese_factory.MVVM.View.UC.FarmControlUC
 {
     /// <summary>
-    /// Логика взаимодействия для FarmControl.xaml
+    /// Interaction logic for FeedWarehouseControl.xaml
     /// </summary>
-    public partial class FarmControl : UserControl
+    public partial class FeedWarehouseControl : UserControl
     {
-        public FarmControl()
+        public FeedWarehouseControl()
         {
             InitializeComponent();
-            DataContext = new FarmControlVM();
+            DataContext = new FeedWarehouseControlVM();                      
         }
     }
 }
