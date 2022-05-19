@@ -1,6 +1,4 @@
-﻿using Cheese_factory.Core.Command;
-using Cheese_factory.MVVM.ViewModel;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,22 +13,17 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Cheese_factory.MVVM.View.UC
+namespace Cheese_factory.MVVM.View.UC.FarmControlUC
 {
     /// <summary>
-    /// Логика взаимодействия для MainMenuControl.xaml
+    /// Логика взаимодействия для CowControl1.xaml
     /// </summary>
-    public partial class MainMenuControl : UserControl
+    public partial class CowControl : UserControl
     {
-        public MainMenuControl()
+        public CowControl()
         {
             InitializeComponent();
-            DataContext = new MainMenuControlVM();
+           // DataContext = new CowControlVM();
         }
     }
-
-
-
-    
-    
 }

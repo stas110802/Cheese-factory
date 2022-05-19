@@ -10,30 +10,19 @@ using System.Windows.Controls;
 
 namespace Cheese_factory.MVVM.ViewModel
 {
-    public sealed class MainWindowVM : ObservableObject
+    public sealed class MainMenuControlVM : ObservableObject
     {
-        #region INotifyPropertyChanged fields
-        private Frame _screenFrame;
-        #endregion
-
-        public MainWindowVM()
+        public MainMenuControlVM()
         {
-            _screenFrame = new Frame();
             FarmControlCommand = new BaseCommand(OpenFarmControl);
-        }
-
-        public Frame ScreenFrame 
-        { 
-            get => _screenFrame;
-            set => Set(ref _screenFrame, value, nameof(ScreenFrame));
         }
 
         public BaseCommand FarmControlCommand { get; private set; } 
 
         private void OpenFarmControl(object obj = null)
         {
-            _screenFrame.Navigate(new FarmControl());
+            MainWindow.MainScreenFrame
+                .Navigate(new FarmControl());
         }
-
     }
 }

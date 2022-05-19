@@ -1,0 +1,35 @@
+﻿<UserControl x:Class="Cheese_factory.MVVM.View.UC.FarmControlUC.CowControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Cheese_factory.MVVM.View.UC.FarmControlUC"
+             mc:Ignorable="d" 
+             d:DesignHeight="550" d:DesignWidth="700">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        
+        <StackPanel Grid.Row="0" Orientation="Horizontal">
+            <Border Width="25"/>
+            <DataGrid 
+                AutoGenerateColumns="False" IsReadOnly="True" FontSize="20"
+                ItemsSource="{Binding FeedWarehouses}" SelectedItem="{Binding SelectedFeedWarehouse}">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="ID СК" Width="150" Binding="{Binding ID}"/>
+                    <DataGridTextColumn Header="Количество" Width="150" Binding="{Binding Count}"/>
+                    <DataGridTextColumn Header="FK Склад" Width="150" Binding="{Binding WarehouseFK}" />
+                    <DataGridTextColumn Header="FK Корм" Width="150" Binding="{Binding FeedFK}"/>
+                </DataGrid.Columns>
+
+                <DataGrid.InputBindings>
+                    <MouseBinding
+                        MouseAction="LeftDoubleClick"
+                        Command="{Binding FeedWarehousesClickCommand}"/>
+                </DataGrid.InputBindings>
+            </DataGrid>
+        </StackPanel>
+    </Grid>
+</UserControl>

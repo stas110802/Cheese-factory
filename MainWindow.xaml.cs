@@ -2,6 +2,7 @@
 using Cheese_factory.MVVM.View.UC;
 using Cheese_factory.MVVM.ViewModel;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 
 namespace Cheese_factory
@@ -11,10 +12,22 @@ namespace Cheese_factory
     /// </summary>
     public partial class MainWindow : Window
     {
+        public static Frame MainScreenFrame;
         public MainWindow()
         {
             InitializeComponent();
-            ScreenFrame.Navigate(new FarmControl());
+            var succes = ScreenFrame.Navigate(new MainMenuControl());
+
+            if(succes)
+            {
+                MainScreenFrame = ScreenFrame;
+                DataContext = new MainMenuControlVM();
+            }
+            else
+            {
+                MessageBox.Show("Error!");
+            }
         }
+        // создать класс ToolCommande и реализовать базовые команды (add, delete, update, change)
     }
 }
