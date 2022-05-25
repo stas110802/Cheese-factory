@@ -17,14 +17,14 @@ using Cheese_factory.MVVM.ViewModel;
 namespace Cheese_factory.MVVM.View.UC.FarmControlUC
 {
     /// <summary>
-    /// Логика взаимодействия для CowControl1.xaml
+    /// Interaction logic for FeedControl.xaml
     /// </summary>
-    public partial class CowControl : UserControl
+    public partial class FeedControl : UserControl
     {
-        public CowControl()
+        public FeedControl()
         {
             InitializeComponent();
-            DataContext = new CowControlVM();
+            DataContext = new FeedControlVM();
         }
     }
 }

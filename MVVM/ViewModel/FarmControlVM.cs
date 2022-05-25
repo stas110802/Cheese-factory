@@ -20,6 +20,10 @@ namespace Cheese_factory.MVVM.ViewModel
         {
             _screenFrame = new Frame();
             FeedWarehouseCommand = new BaseCommand(ChangeFeedWarehouseData);
+            CowCommand = new BaseCommand(x =>
+            {
+                _screenFrame.Navigate(new CowControl());
+            });
         }
 
         public Frame ScreenFrame
@@ -29,6 +33,7 @@ namespace Cheese_factory.MVVM.ViewModel
         }
 
         public BaseCommand FeedWarehouseCommand { get; private set; }
+        public BaseCommand CowCommand { get; private set; }
 
         public void ChangeFeedWarehouseData(object arg = null)
         {

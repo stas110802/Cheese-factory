@@ -14,13 +14,13 @@ using System.Windows.Input;
 
 namespace Cheese_factory.MVVM.ViewModel
 {
-    public sealed class FeedWarehouseControlVM : ObservableObject, IDBItemsControl, IDisposable
+    public sealed class FeedWarehouseControlVM : ObservableObject,  IDisposable
     {
         private ObservableCollection<FeedWarehouse> _feedWarehouses;
         private ObservableCollection<Feed> _feeds;
+        private ObservableCollection<Warehouse> _warehouses;
         private Feed _selectedFeed;
         private FeedWarehouse _selectedFeedWarehouse;
-        private ObservableCollection<Warehouse> _warehouses;
         private Warehouse _selectedWarehouse;
         private int _count;
 
@@ -88,6 +88,7 @@ namespace Cheese_factory.MVVM.ViewModel
         public BaseCommand ChangeItemCommand { get; set; }
         public BaseCommand FeedWarehousesClickCommand { get; set; }
 
+        // rename method
         private void FeedWarehousesIsDoubleClick(object arg = null)
         {
             try
@@ -135,7 +136,7 @@ namespace Cheese_factory.MVVM.ViewModel
             ChangeItemCommand = new BaseCommand(ChagneExistingItem);
             FeedWarehousesClickCommand = new BaseCommand(FeedWarehousesIsDoubleClick);
         }
-
+        // by selected
         private void ChagneExistingItem(object obj = null)
         {
             try
@@ -190,7 +191,6 @@ namespace Cheese_factory.MVVM.ViewModel
             {
                 MessageBox.Show("SOME ERROR! {0}", ex.Message);
             }
-            
         }
 
         private void DeleteSelectedItem(object arg)
@@ -205,7 +205,6 @@ namespace Cheese_factory.MVVM.ViewModel
             {
                 MessageBox.Show("SOME ERROR! {0}", err.Message);
             }
-            
         }
 
         public void Dispose()

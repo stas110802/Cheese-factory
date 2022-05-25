@@ -47,7 +47,7 @@
             </StackPanel>
 
             <StackPanel Grid.Column="1" Grid.Row="2">
-                <Button  Content="Коровы" Height="75" FontSize="20" Command="{Binding MainMenuControl.TestCommand}"/>
+                <Button  Content="Коровы" Height="75" FontSize="20" Command="{Binding CowCommand}"/>
             </StackPanel>
 
             <StackPanel Grid.Column="2" Grid.Row="1">
