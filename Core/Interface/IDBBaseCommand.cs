@@ -18,7 +18,7 @@ namespace Cheese_factory.Core.Interface
         /// <summary>
         /// Binds commands and methods
         /// </summary>
-        private void InitCommands()
+        public void InitCommands()
         {
             AddItemCommand = new BaseCommand(AddItem);
             DeleteItemCommand = new BaseCommand(DeleteSelectedItem);

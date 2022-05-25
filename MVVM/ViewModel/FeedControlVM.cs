@@ -27,8 +27,10 @@ namespace Cheese_factory.MVVM.ViewModel
             _dbContext = new MyDBContext();
             _feeds = new ObservableCollection<Feed>();
             _selectedFeed = new Feed();
+            ((IDbBaseCommand)this).InitCommands();
+            DBContextCommands.AddItemsIntoCollection(_feeds, _dbContext.Feeds);// init base value from table
         }
-
+        
         public ObservableCollection<Feed> Feeds
         {
             get => _feeds;
@@ -72,22 +74,63 @@ namespace Cheese_factory.MVVM.ViewModel
 
         void IInitializeCommands.DeleteSelectedItem(object args)
         {
-            throw new NotImplementedException();
+            try
+            {
+                DBContextCommands.DeleteItem(_dbContext, _dbContext.Feeds, SelectedFeed);
+                MessageBox.Show("OK");
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show($"ERROR {exception.Message}");
+            }
         }
 
         void IInitializeCommands.UpdateItems(object args)
         {
-            throw new NotImplementedException();
+            try
+            {
+                DBContextCommands.UpdateItems(_feeds, _dbContext.Feeds);
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show($"Error! {exception.Message}");
+            }
         }
 
         void IInitializeCommands.ChangeExistingItem(object args)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var id = SelectedFeed.ID;
+                var oldItem = _dbContext.Feeds.Find(id);
+
+                var newItem = new Feed()
+                {
+                    ID = id,
+                    Name = _name,
+                    Manufacturer = _manufacturer
+                };
+
+                DBContextCommands.ChangeExistingItem(_dbContext, oldItem, newItem);
+                MessageBox.Show("OK");
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show($"Error! {exception.Message}");
+            }
         }
 
         void IInitializeCommands.ClickOnTable(object args)
         {
-            throw new NotImplementedException();
+            try
+            {
+               Name = SelectedFeed.Name;
+               Manufacturer = SelectedFeed.Manufacturer;
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show($"Error! {exception.Message}");
+            }
         }
     }
 }

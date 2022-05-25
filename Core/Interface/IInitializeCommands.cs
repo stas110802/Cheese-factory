@@ -11,6 +11,10 @@ namespace Cheese_factory.Core.Interface
     {
         protected void AddItem(object args = null);
         protected void DeleteSelectedItem(object args = null);
+        /// <summary>
+        /// Update all Observable collection items
+        /// </summary>
+        /// <param name="args"></param>
         protected void UpdateItems(object args = null);
         protected void ChangeExistingItem(object args = null);
         protected void ClickOnTable(object args = null);

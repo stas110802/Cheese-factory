@@ -8,6 +8,6 @@ namespace Cheese_factory.Core.Interface
 {
     public interface IDBContexter : IDisposable
     {
-
+        
     }
 }

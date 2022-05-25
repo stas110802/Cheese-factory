@@ -24,7 +24,7 @@ namespace Cheese_factory.MVVM.ViewModel
         private Warehouse _selectedWarehouse;
         private int _count;
 
-        private readonly MyDBContext _dbContext;//todo add interface IDBContexter
+        private MyDBContext _dbContext;//todo add interface IDBContexter
 
         ~FeedWarehouseControlVM()
         {
@@ -36,7 +36,7 @@ namespace Cheese_factory.MVVM.ViewModel
             _dbContext = new MyDBContext();
             NotifyPropertyInit();
             InitFeeds();
-            UpdateFeedWarehouses();
+            UpdateItems();
             InitCommands();
             AddItemsIntoCollection(_warehouses, _dbContext.Warehouses);
         }
@@ -108,16 +108,19 @@ namespace Cheese_factory.MVVM.ViewModel
             }
         }
 
-        private void UpdateFeedWarehouses(object arg = null)
+        private void UpdateItems(object arg = null)
         {
-            if (_feedWarehouses != null)
-                _feedWarehouses.Clear();
-
-            foreach (var item in _dbContext.FeedWarehouses)
-            {
-                _feedWarehouses.Add(item);
-            }
+            _feedWarehouses.Clear();
+            _warehouses.Clear();
+            _feeds.Clear();
+            
+            DBContextCommands.AddItemsIntoCollection(_feedWarehouses, _dbContext.FeedWarehouses);
+            DBContextCommands.AddItemsIntoCollection(_warehouses, _dbContext.Warehouses);
+            DBContextCommands.AddItemsIntoCollection(_feeds, _dbContext.Feeds);
         }
+
+        
+
         //todo add interface INotifyPropertyInitializer
         private void NotifyPropertyInit() 
         {
@@ -131,7 +134,7 @@ namespace Cheese_factory.MVVM.ViewModel
         private void InitCommands()
         {
             DeleteItemCommand = new BaseCommand(DeleteSelectedItem);
-            UpdateItemsCommand = new BaseCommand(UpdateFeedWarehouses);
+            UpdateItemsCommand = new BaseCommand(UpdateItems);
             AddItemCommand = new BaseCommand(AddItem);
             ChangeItemCommand = new BaseCommand(ChagneExistingItem);
             FeedWarehousesClickCommand = new BaseCommand(FeedWarehousesIsDoubleClick);

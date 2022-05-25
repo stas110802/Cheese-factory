@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Cheese_factory.Core.Interface;
 using Cheese_factory.MVVM.ViewModel;
 
 namespace Cheese_factory.MVVM.View.UC.FarmControlUC

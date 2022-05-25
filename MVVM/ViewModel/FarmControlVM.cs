@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
+using Cheese_factory.MVVM.Model;
 
 namespace Cheese_factory.MVVM.ViewModel
 {
@@ -19,11 +20,9 @@ namespace Cheese_factory.MVVM.ViewModel
         public FarmControlVM()
         {
             _screenFrame = new Frame();
-            FeedWarehouseCommand = new BaseCommand(ChangeFeedWarehouseData);
-            CowCommand = new BaseCommand(x =>
-            {
-                _screenFrame.Navigate(new CowControl());
-            });
+            FeedWarehouseCommand = GetNavigationCommand(new FeedWarehouseControl());
+            CowCommand = GetNavigationCommand(new CowControl());
+            FeedCommand = GetNavigationCommand(new FeedControl());
         }
 
         public Frame ScreenFrame
@@ -34,10 +33,15 @@ namespace Cheese_factory.MVVM.ViewModel
 
         public BaseCommand FeedWarehouseCommand { get; private set; }
         public BaseCommand CowCommand { get; private set; }
+        public BaseCommand FeedCommand { get; private set; }
 
-        public void ChangeFeedWarehouseData(object arg = null)
+       
+        private BaseCommand GetNavigationCommand(Control screen)
         {
-            _screenFrame.Navigate(new FeedWarehouseControl());
+            return new BaseCommand(x =>
+            {
+                _screenFrame.Navigate(screen);
+            });
         }
     }
 }

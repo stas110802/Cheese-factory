@@ -27,7 +27,7 @@
             </Grid.ColumnDefinitions>
 
             <StackPanel Grid.Column="0" Grid.Row="0">
-                <Button  Content="Корма" Height="75" FontSize="20" Command="{Binding MainMenuControl.TestCommand}"/>
+                <Button  Content="Корма" Height="75" FontSize="20" Command="{Binding FeedCommand}"/>
             </StackPanel>
 
             <StackPanel Grid.Column="0" Grid.Row="1">
