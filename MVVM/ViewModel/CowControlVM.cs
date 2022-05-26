@@ -121,7 +121,6 @@ namespace Cheese_factory.MVVM.ViewModel
                     _cows.Add(item);
                 }
 
-                MessageBox.Show("OK");
             }
             catch (Exception)
             {

@@ -1,0 +1,82 @@
+﻿<UserControl x:Class="Cheese_factory.MVVM.View.UC.FarmControlUC.MilkCollectionControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Cheese_factory.MVVM.View.UC.FarmControlUC"
+             xmlns:viewmodels="clr-namespace:Cheese_factory.MVVM.ViewModel"
+             d:DataContext="{d:DesignInstance Type=viewmodels:MilkCollectionControlVM}"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" Orientation="Horizontal">
+            <Border Width="25"/>
+            <DataGrid 
+                AutoGenerateColumns="False" IsReadOnly="True" FontSize="18"
+                ItemsSource="{Binding MilkCollections}" SelectedItem="{Binding SelectedMilkCollection}">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="ID" Width="100" Binding="{Binding ID}"/>
+                    <DataGridTextColumn Header="FK Рабочей пары" Width="200" Binding="{Binding WorkingCoupleFK}"/>
+                    <DataGridTextColumn Header="Дата сбора" Width="150" Binding="{Binding CollectionDate}" />
+                    <DataGridTextColumn Header="Количество" Width="150" Binding="{Binding Count}" />
+                </DataGrid.Columns>
+
+                <DataGrid.InputBindings>
+                    <MouseBinding
+                        MouseAction="LeftDoubleClick"
+                        Command="{Binding TableClickCommand}"/>
+                </DataGrid.InputBindings>
+            </DataGrid>
+        </StackPanel>
+
+
+        <StackPanel Grid.Row="1" Orientation="Horizontal">
+            <Border Width="25"/>
+            <StackPanel>
+                <Border Height="25"/>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock  Text="Рабочие пары: " FontSize="22" Width="200"/>
+                    <Border Width="25"/>
+                    <ComboBox 
+                        x:Name="FeedComboBox" 
+                        Width="250"
+                        ItemsSource="{Binding Path=WorkingCouples}" 
+                        SelectedItem="{Binding Path=SelectedWorkingCouple}"  
+                        DisplayMemberPath="Name"/>
+                </StackPanel>
+                <Border Height="20"/>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock  Text="Дата сбора: " FontSize="22" Width="200"/>
+                    <Border Width="25"/>
+                    <TextBox FontSize="25" Width="250" Text="{Binding CollectionDate}"/>
+                </StackPanel>
+                <Border Height="20"/>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Количество: " FontSize="22" Width="200"/>
+                    <Border Width="25"/>
+                    <TextBox FontSize="25" Width="250" Text="{Binding Count}"/>
+                </StackPanel>
+
+                <Border Height="25"/>
+
+                <StackPanel Grid.Row="0" Orientation="Horizontal">
+                    <Border Width="50"/>
+                    <Button Content="Add" FontSize="20" Width="100" Command="{Binding AddItemCommand}"/>
+                    <Border Width="50"/>
+                    <Button Content="Delete" FontSize="20" Width="100" Command="{Binding DeleteItemCommand}"/>
+                    <Border Width="50"/>
+                    <Button Content="Update" FontSize="20" Width="100" Command="{Binding UpdateItemsCommand}"/>
+                    <Border Width="50"/>
+                    <Button Content="Change" FontSize="20" Width="100" Command="{Binding ChangeItemCommand}"/>
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
+
+    </Grid>
+</UserControl>

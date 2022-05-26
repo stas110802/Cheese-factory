@@ -14,7 +14,7 @@ namespace Cheese_factory.MVVM.Model
         public int ID { get; set; }
 
         [Column("FK_Рабочая_пара")]
-        public int WorkinCoupleFK { get; set; }
+        public int WorkingCoupleFK { get; set; }
 
         [Column("Дата_сбора")]
         public DateTime CollectionDate { get; set; }
@@ -22,7 +22,7 @@ namespace Cheese_factory.MVVM.Model
         [Column("Количество")]
         public int Count { get; set; }
 
-        [ForeignKey(nameof(WorkinCoupleFK))]
+        [ForeignKey(nameof(WorkingCoupleFK))]
         public virtual WorkingCouple WorkingCouple { get; set; }
     }
 }
