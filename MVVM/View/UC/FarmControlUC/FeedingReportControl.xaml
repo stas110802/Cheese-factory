@@ -58,7 +58,7 @@
                 </StackPanel>
                 <Border Height="20"/>
                 <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="Количество корма: " FontSize="22" Width="200"/>
+                    <TextBlock Text="Корма потрачено: " FontSize="22" Width="200"/>
                     <Border Width="25"/>
                     <TextBox FontSize="25" Width="250" Text="{Binding CountFeed}"/>
                 </StackPanel>
