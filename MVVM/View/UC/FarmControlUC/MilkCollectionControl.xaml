@@ -48,7 +48,7 @@
                         Width="250"
                         ItemsSource="{Binding Path=WorkingCouples}" 
                         SelectedItem="{Binding Path=SelectedWorkingCouple}"  
-                        DisplayMemberPath="Name"/>
+                        DisplayMemberPath="ID"/>
                 </StackPanel>
                 <Border Height="20"/>
                 <StackPanel Orientation="Horizontal">

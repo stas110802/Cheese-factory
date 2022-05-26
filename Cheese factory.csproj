@@ -8,11 +8,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Core\Command\Farm\**" />
+    <EmbeddedResource Remove="Core\Command\Farm\**" />
+    <None Remove="Core\Command\Farm\**" />
+    <Page Remove="Core\Command\Farm\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="EntityFramework" Version="6.4.4" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Core\Command\Farm\" />
     <Folder Include="MVVM\View\Window\" />
   </ItemGroup>
 

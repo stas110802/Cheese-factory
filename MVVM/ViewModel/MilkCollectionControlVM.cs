@@ -103,13 +103,13 @@ namespace Cheese_factory.MVVM.ViewModel
         {
             try
             {
-                var id = SelectedMilkCollection.ID;
+                var id = _selectedMilkCollection.ID;
                 var oldItem = _dbContext.MilkCollections.Find(id);
 
                 var newItem = new MilkCollection()
                 {
                     ID = id,
-                    WorkingCoupleFK = SelectedWorkingCouple.ID,
+                    WorkingCoupleFK = _selectedWorkingCouple.ID,
                     Count = _count,
                     CollectionDate = _collectionDate
                 };
@@ -127,8 +127,9 @@ namespace Cheese_factory.MVVM.ViewModel
         {
             try
             {
-                _count = SelectedMilkCollection.Count;
-                _collectionDate = SelectedMilkCollection.CollectionDate;
+                Count = _selectedMilkCollection.Count;
+                CollectionDate = _selectedMilkCollection.CollectionDate;
+                SelectedWorkingCouple = _selectedMilkCollection.WorkingCouple;
             }
             catch (Exception ex)
             {
@@ -140,7 +141,7 @@ namespace Cheese_factory.MVVM.ViewModel
         {
             try
             {
-                DBContextCommands.DeleteItem(_dbContext, _dbContext.MilkCollections, SelectedMilkCollection);
+                DBContextCommands.DeleteItem(_dbContext, _dbContext.MilkCollections, _selectedMilkCollection);
             }
             catch (Exception ex)
             {

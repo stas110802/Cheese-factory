@@ -17,7 +17,7 @@ namespace Cheese_factory.MVVM.ViewModel
         private ObservableCollection<Cow> _cows;
         private Cow _selectedCow;
 
-        private readonly MyDBContext _dbContext;//todo add interface IDBContexter
+        private readonly MyDBContext _dbContext;
 
         private DateTime _dateBirth;
         private int _weight;
