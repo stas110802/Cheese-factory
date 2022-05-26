@@ -35,7 +35,7 @@
             </StackPanel>
 
             <StackPanel Grid.Column="2" Grid.Row="0">
-                <Button  Content="Отчеты кормления" Height="75" FontSize="20" Command="{Binding MainMenuControl.TestCommand}"/>
+                <Button  Content="Отчеты кормления" Height="75" FontSize="20" Command="{Binding FeedingReportCommand}"/>
             </StackPanel>
 
             <StackPanel Grid.Column="1" Grid.Row="0">

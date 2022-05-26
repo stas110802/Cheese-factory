@@ -23,6 +23,7 @@ namespace Cheese_factory.MVVM.ViewModel
             FeedWarehouseCommand = GetNavigationCommand(new FeedWarehouseControl());
             CowCommand = GetNavigationCommand(new CowControl());
             FeedCommand = GetNavigationCommand(new FeedControl());
+            FeedingReportCommand = GetNavigationCommand(new FeedingReportControl());
         }
 
         public Frame ScreenFrame
@@ -34,8 +35,8 @@ namespace Cheese_factory.MVVM.ViewModel
         public BaseCommand FeedWarehouseCommand { get; private set; }
         public BaseCommand CowCommand { get; private set; }
         public BaseCommand FeedCommand { get; private set; }
+        public BaseCommand FeedingReportCommand { get; private set; }
 
-       
         private BaseCommand GetNavigationCommand(Control screen)
         {
             return new BaseCommand(x =>

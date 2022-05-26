@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,33 +12,50 @@ using Cheese_factory.MVVM.Model;
 
 namespace Cheese_factory.MVVM.ViewModel
 {
-    public sealed class FeedControlVM : ObservableObject, IDbBaseCommand, IDisposable
+    public sealed class FeedingReportVM : ObservableObject, IDbBaseCommand, IDisposable
     {
         private MyDBContext _dbContext;
+
+        private ObservableCollection<FeedingReport> _feedingReports;
         private ObservableCollection<Feed> _feeds;
+
+        private FeedingReport _selectedFeedingReport;
         private Feed _selectedFeed;
 
-        private string _manufacturer;
-        private string _name;
+        private int _countFeed;
+        private DateTime _feedingDate;
 
-        public FeedControlVM()
+        public FeedingReportVM()
         {
             _dbContext = new MyDBContext();
+
+            _feedingReports = new ObservableCollection<FeedingReport>();
             _feeds = new ObservableCollection<Feed>();
+            _selectedFeedingReport = new FeedingReport();
             _selectedFeed = new Feed();
-            ((IDbBaseCommand)this).InitCommands();// binds commands and methods
-            DBContextCommands.AddItemsIntoCollection(_feeds, _dbContext.Feeds);// init base value from table
+
+            DBContextCommands.AddItemsIntoCollection(_feedingReports, _dbContext.FeedingReports);
+            DBContextCommands.AddItemsIntoCollection(_feeds, _dbContext.Feeds);
+
+            ((IDbBaseCommand)this).InitCommands();
         }
 
-        ~FeedControlVM()
+        public ObservableCollection<FeedingReport> FeedingReports
         {
-            Dispose();
+            get => _feedingReports;
+            set => Set(ref _feedingReports, value, nameof(FeedingReports));
         }
-        
+
         public ObservableCollection<Feed> Feeds
         {
             get => _feeds;
             set => Set(ref _feeds, value, nameof(Feeds));
+        }
+
+        public FeedingReport SelectedFeedingReport
+        {
+            get => _selectedFeedingReport;
+            set => Set(ref _selectedFeedingReport, value, nameof(SelectedFeedingReport));
         }
 
         public Feed SelectedFeed
@@ -48,16 +64,16 @@ namespace Cheese_factory.MVVM.ViewModel
             set => Set(ref _selectedFeed, value, nameof(SelectedFeed));
         }
 
-        public string Manufacturer
+        public int CountFeed
         {
-            get => _manufacturer;
-            set => Set(ref _manufacturer, value, nameof(Manufacturer));
+            get => _countFeed;
+            set => Set(ref _countFeed, value, nameof(CountFeed));
         }
 
-        public string Name
+        public DateTime FeedingDate
         {
-            get => _name;
-            set => Set(ref _name, value, nameof(Name));
+            get => _feedingDate;
+            set => Set(ref _feedingDate, value, nameof(FeedingDate));
         }
 
         public BaseCommand DeleteItemCommand { get; set; }
@@ -65,23 +81,23 @@ namespace Cheese_factory.MVVM.ViewModel
         public BaseCommand AddItemCommand { get; set; }
         public BaseCommand ChangeItemCommand { get; set; }
         public BaseCommand TableClickCommand { get; set; }
-
-
+        
         void IInitializeCommands.AddItem(object args)
         {
-            var item = new Feed()
+            var item = new FeedingReport()
             {
-                Name = _name,
-                Manufacturer = _manufacturer
+                FeedFK = SelectedFeed.ID,
+                CountFeed = CountFeed,
+                FeedingDate = FeedingDate
             };
-            DBContextCommands.AddItem(_dbContext, _dbContext.Feeds, item);
+            DBContextCommands.AddItem(_dbContext, _dbContext.FeedingReports, item);
         }
 
         void IInitializeCommands.DeleteSelectedItem(object args)
         {
             try
             {
-                DBContextCommands.DeleteItem(_dbContext, _dbContext.Feeds, SelectedFeed);
+                DBContextCommands.DeleteItem(_dbContext, _dbContext.FeedingReports, SelectedFeedingReport);
                 MessageBox.Show("OK");
             }
             catch (Exception exception)
@@ -94,6 +110,10 @@ namespace Cheese_factory.MVVM.ViewModel
         {
             try
             {
+                _feedingReports?.Clear();
+                _feeds?.Clear();
+
+                DBContextCommands.UpdateItems(_feedingReports, _dbContext.FeedingReports);
                 DBContextCommands.UpdateItems(_feeds, _dbContext.Feeds);
             }
             catch (Exception exception)
@@ -106,14 +126,15 @@ namespace Cheese_factory.MVVM.ViewModel
         {
             try
             {
-                var id = SelectedFeed.ID;
-                var oldItem = _dbContext.Feeds.Find(id);
+                var id = SelectedFeedingReport.ID;
+                var oldItem = _dbContext.FeedingReports.Find(id);
 
-                var newItem = new Feed()
+                var newItem = new FeedingReport()
                 {
                     ID = id,
-                    Name = _name,
-                    Manufacturer = _manufacturer
+                    FeedFK = SelectedFeed.ID,
+                    FeedingDate = FeedingDate,
+                    CountFeed = CountFeed
                 };
 
                 DBContextCommands.ChangeExistingItem(_dbContext, oldItem, newItem);
@@ -129,8 +150,9 @@ namespace Cheese_factory.MVVM.ViewModel
         {
             try
             {
-               Name = SelectedFeed.Name;
-               Manufacturer = SelectedFeed.Manufacturer;
+                FeedingDate = SelectedFeedingReport.FeedingDate;
+                CountFeed = SelectedFeedingReport.CountFeed;
+                SelectedFeed = SelectedFeedingReport.Feed;
             }
             catch (Exception exception)
             {

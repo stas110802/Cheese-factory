@@ -38,7 +38,7 @@ namespace Cheese_factory.MVVM.ViewModel
             InitFeeds();
             UpdateItems();
             InitCommands();
-            AddItemsIntoCollection(_warehouses, _dbContext.Warehouses);
+            //AddItemsIntoCollection(_warehouses, _dbContext.Warehouses);
         }
 
         public ObservableCollection<FeedWarehouse> FeedWarehouses 
