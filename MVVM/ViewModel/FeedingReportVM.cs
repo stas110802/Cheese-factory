@@ -86,6 +86,7 @@ namespace Cheese_factory.MVVM.ViewModel
         {
             var item = new FeedingReport()
             {
+                ID = SelectedFeedingReport.ID,
                 FeedFK = SelectedFeed.ID,
                 CountFeed = CountFeed,
                 FeedingDate = FeedingDate
