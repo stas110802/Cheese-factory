@@ -29,8 +29,11 @@
             <StackPanel Grid.Column="0" Grid.Row="0">
                 <Button  Content="Оборудование" Height="75" FontSize="20" Command="{Binding EquipmentCommand}"/>
             </StackPanel>
-            
-           
+
+            <StackPanel Grid.Column="1" Grid.Row="0">
+                <Button  Content="Оборудование сотрудника" Height="75" FontSize="20" Command="{Binding EquipmentCommand}"/>
+            </StackPanel>
+
         </Grid>
 
         <Grid Grid.Row="1">
