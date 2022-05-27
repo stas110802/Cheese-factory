@@ -11,6 +11,7 @@ namespace Cheese_factory.Core
 {
     public static class DBContextCommands
     {
+        // delet method (:
         public  static void AddItemsIntoCollection<T>(ObservableCollection<T> collection, DbSet<T> dbSet)
             where T : class
         {
