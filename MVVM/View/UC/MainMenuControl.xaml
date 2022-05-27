@@ -16,6 +16,7 @@
                 <RowDefinition/>
                 <RowDefinition/>
                 <RowDefinition/>
+                <RowDefinition/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
@@ -28,12 +29,17 @@
             </StackPanel>
 
             <StackPanel Grid.Column="1" Grid.Row="1" VerticalAlignment="Center">
-                <Button Content="Производство" Height="70" FontSize="20"/>
+                <Button Content="Производство" Height="70" FontSize="20" Command="{Binding ProductionControlCommand}"/>
             </StackPanel>
 
             <StackPanel Grid.Column="1" Grid.Row="2" VerticalAlignment="Center">
                 <Button Content="Продажа" Height="70" FontSize="20"/>
             </StackPanel>
+
+            <StackPanel Grid.Column="1" Grid.Row="3" VerticalAlignment="Center">
+                <Button Content="Общее" Height="70" FontSize="20"/>
+            </StackPanel>
+
         </Grid>
     </Grid>
 </UserControl>

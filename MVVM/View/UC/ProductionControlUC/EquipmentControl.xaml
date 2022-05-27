@@ -4,9 +4,75 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Cheese_factory.MVVM.View.UC.ProductionControlUC"
+             xmlns:viewModel="clr-namespace:Cheese_factory.MVVM.ViewModel.ProductionControlUCVM"
+             d:DataContext="{d:DesignInstance Type=viewModel:EquipmentControlVM}"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="550" d:DesignWidth="700">
     <Grid>
-            
+
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" Orientation="Horizontal">
+            <Border Width="25"/>
+            <DataGrid 
+                AutoGenerateColumns="False" IsReadOnly="True" FontSize="18"
+                ItemsSource="{Binding Equipments }" SelectedItem="{Binding SelectedEquipment}">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="ID" Width="100" Binding="{Binding ID}"/>
+                    <DataGridTextColumn Header="Название" Width="200" Binding="{Binding Name}"/>
+                    <DataGridTextColumn Header="Модель" Width="200" Binding="{Binding Model}"/>
+                    <DataGridTextColumn Header="Производитель" Width="150" Binding="{Binding Manufacturer}" />
+                </DataGrid.Columns>
+
+                <DataGrid.InputBindings>
+                    <MouseBinding
+                        MouseAction="LeftDoubleClick"
+                        Command="{Binding TableClickCommand}"/>
+                </DataGrid.InputBindings>
+            </DataGrid>
+        </StackPanel>
+
+
+        <StackPanel Grid.Row="1" Orientation="Horizontal">
+            <Border Width="25"/>
+            <StackPanel>
+                <Border Height="25"/>
+
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock  Text="Название: " FontSize="22" Width="200"/>
+                    <Border Width="25"/>
+                    <TextBox FontSize="25" Width="250" Text="{Binding Name}"/>
+                </StackPanel>
+                <Border Height="20"/>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock  Text="Модель: " FontSize="22" Width="200"/>
+                    <Border Width="25"/>
+                    <TextBox FontSize="25" Width="250" Text="{Binding Model}"/>
+                </StackPanel>
+                <Border Height="20"/>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Производитель: " FontSize="22" Width="200"/>
+                    <Border Width="25"/>
+                    <TextBox FontSize="25" Width="250" Text="{Binding Manufacturer}"/>
+                </StackPanel>
+
+                <Border Height="25"/>
+
+                <StackPanel Grid.Row="0" Orientation="Horizontal">
+                    <Border Width="50"/>
+                    <Button Content="Add" FontSize="20" Width="100" Command="{Binding AddItemCommand}"/>
+                    <Border Width="50"/>
+                    <Button Content="Delete" FontSize="20" Width="100" Command="{Binding DeleteItemCommand}"/>
+                    <Border Width="50"/>
+                    <Button Content="Update" FontSize="20" Width="100" Command="{Binding UpdateItemsCommand}"/>
+                    <Border Width="50"/>
+                    <Button Content="Change" FontSize="20" Width="100" Command="{Binding ChangeItemCommand}"/>
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
+
     </Grid>
 </UserControl>

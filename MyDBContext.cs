@@ -10,6 +10,7 @@ namespace Cheese_factory
 {
     public class MyDBContext : DbContext
     {
+        // переделать под синглЧмоньк
         public MyDBContext() : base("name=DefaultConnection") { }
         public DbSet<Employee> Employees { get; set; } // сотрудники
         public DbSet<Position> Positions { get; set; } // должности

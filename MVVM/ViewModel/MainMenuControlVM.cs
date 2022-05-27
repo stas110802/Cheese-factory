@@ -14,15 +14,18 @@ namespace Cheese_factory.MVVM.ViewModel
     {
         public MainMenuControlVM()
         {
-            FarmControlCommand = new BaseCommand(OpenFarmControl);
+            FarmControlCommand = MainWindow
+                .MainScreenFrame
+                .GetNavigationCommand(new FarmControl());
+
+            ProductionControlCommand = MainWindow
+                .MainScreenFrame
+                .GetNavigationCommand(new ProductionControl());
         }
 
-        public BaseCommand FarmControlCommand { get; private set; } 
+        public BaseCommand FarmControlCommand { get; private set; }
+        public BaseCommand ProductionControlCommand { get; private set; }
 
-        private void OpenFarmControl(object obj = null)
-        {
-            MainWindow.MainScreenFrame
-                .Navigate(new FarmControl());
-        }
+       
     }
 }

@@ -12,22 +12,13 @@ namespace Cheese_factory
     /// </summary>
     public partial class MainWindow : Window
     {
-        public static Frame MainScreenFrame;
+        public volatile static Frame MainScreenFrame;
         public MainWindow()
         {
             InitializeComponent();
-            var succes = ScreenFrame.Navigate(new MainMenuControl());
-
-            if(succes)
-            {
-                MainScreenFrame = ScreenFrame;
-                DataContext = new MainMenuControlVM();
-            }
-            else
-            {
-                MessageBox.Show("Error!");
-            }
+            MainScreenFrame = ScreenFrame;
+            ScreenFrame.Navigate(new MainMenuControl());
         }
-        // создать класс ToolCommande и реализовать базовые команды (add, delete, update, change)
+        
     }
 }

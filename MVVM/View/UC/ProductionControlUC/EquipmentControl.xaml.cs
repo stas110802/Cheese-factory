@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Cheese_factory.MVVM.ViewModel.ProductionControlUCVM;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,7 @@ namespace Cheese_factory.MVVM.View.UC.ProductionControlUC
         public EquipmentControl()
         {
             InitializeComponent();
+            DataContext = new EquipmentControlVM();
         }
     }
 }
