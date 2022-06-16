@@ -18,7 +18,7 @@ namespace Cheese_factory
         public DbSet<Cow> Cows { get; set; } // коровы
         public DbSet<MilkCollection> MilkCollections { get; set; } // сборы молока
         public DbSet<Feed> Feeds { get; set; } // корма
-        public DbSet<Feeding> FeedingReports { get; set; } // отчеты кормления
+        public DbSet<Feeding> Feeding { get; set; } // кормежка
         public DbSet<Product> Prosucts { get; set; } // товары
         public DbSet<Warehouse> Warehouses { get; set; } // склады
         public DbSet<ProductWarehouse> ProductWarehouses { get; set; } // склада продуктов
@@ -30,6 +30,7 @@ namespace Cheese_factory
         public DbSet<Storage> Storages { get; set; } // хранилища
         public DbSet<UsedStorage> UsedStorages { get; set; } // занятые хранилища
         public DbSet<ProcessingStep> ProcessingSteps { get; set; } // этап обработок
+        public DbSet<FeedingEmployee> FeedingEmployees { get; set; } // сотрудники кормежки
 
     }
 }

@@ -47,7 +47,7 @@
             </StackPanel>
 
             <StackPanel Grid.Column="2" Grid.Row="1">
-                <Button  Content="Сотрудники кормежки" Height="75" FontSize="20" Command="{Binding MainMenuControl.TestCommand}"/>
+                <Button  Content="Сотрудники кормежки" Height="75" FontSize="20" Command="{Binding FeedingEmployeeCommand}"/>
             </StackPanel>
         </Grid>
 

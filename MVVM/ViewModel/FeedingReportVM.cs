@@ -35,7 +35,7 @@ namespace Cheese_factory.MVVM.ViewModel
             _selectedFeeding = new Feeding();
             _selectedFeed = new Feed();
 
-            DBContextCommands.AddItemsIntoCollection(_feedingReports, _dbContext.FeedingReports);
+            DBContextCommands.AddItemsIntoCollection(_feedingReports, _dbContext.Feeding);
             DBContextCommands.AddItemsIntoCollection(_feeds, _dbContext.Feeds);
 
             ((IDbBaseCommand)this).InitCommands();
@@ -99,14 +99,14 @@ namespace Cheese_factory.MVVM.ViewModel
                 TotalCountFeed = TotalCountFeed,
                 FeedingDate = FeedingDate
             };
-            DBContextCommands.AddItem(_dbContext, _dbContext.FeedingReports, item);
+            DBContextCommands.AddItem(_dbContext, _dbContext.Feeding, item);
         }
 
         void IInitializeCommands.DeleteSelectedItem(object args)
         {
             try
             {
-                DBContextCommands.DeleteItem(_dbContext, _dbContext.FeedingReports, SelectedFeeding);
+                DBContextCommands.DeleteItem(_dbContext, _dbContext.Feeding, SelectedFeeding);
                 MessageBox.Show("OK");
             }
             catch (Exception exception)
@@ -122,7 +122,7 @@ namespace Cheese_factory.MVVM.ViewModel
                 _feedingReports?.Clear();
                 _feeds?.Clear();
 
-                DBContextCommands.UpdateItems(_feedingReports, _dbContext.FeedingReports);
+                DBContextCommands.UpdateItems(_feedingReports, _dbContext.Feeding);
                 DBContextCommands.UpdateItems(_feeds, _dbContext.Feeds);
             }
             catch (Exception exception)
@@ -136,7 +136,7 @@ namespace Cheese_factory.MVVM.ViewModel
             try
             {
                 var id = SelectedFeeding.ID;
-                var oldItem = _dbContext.FeedingReports.Find(id);
+                var oldItem = _dbContext.Feeding.Find(id);
 
                 var newItem = new Feeding()
                 {

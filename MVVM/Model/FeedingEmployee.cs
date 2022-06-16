@@ -13,10 +13,18 @@ namespace Cheese_factory.MVVM.Model
         [Column("ID_Cотрудники_кормежки")]
         public int ID { get; set; }
 
+
         [Column("FK_Сотрудник")]
         public int EmployeeFK { get; set; }
 
         [Column("FK_Кормежка")]
         public int FeedingFK { get; set; }
+
+
+        [ForeignKey(nameof(EmployeeFK))]
+        public virtual Employee Employee { get; set; }
+
+        [ForeignKey(nameof(FeedingFK))]
+        public virtual Feeding Feeding { get; set; }
     }
 }

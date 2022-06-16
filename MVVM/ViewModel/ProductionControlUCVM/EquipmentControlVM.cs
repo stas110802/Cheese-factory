@@ -91,7 +91,6 @@ namespace Cheese_factory.MVVM.ViewModel.ProductionControlUCVM
             try
             {
                 DBContextCommands.DeleteItem(_dbContext, _dbContext.Equipments, _selectedEquipment);
-                MessageBox.Show("OK");
             }
             catch (Exception ex)
             {
@@ -115,7 +114,6 @@ namespace Cheese_factory.MVVM.ViewModel.ProductionControlUCVM
                 };
 
                 DBContextCommands.ChangeExistingItem(_dbContext, oldItem, newItem);
-                MessageBox.Show("OK");
             }
             catch (Exception exception)
             {

@@ -1,14 +1,15 @@
-﻿<UserControl x:Class="Cheese_factory.MVVM.View.UC.FarmControlUC.FeedingEmployeeControl"
+﻿<UserControl x:Class="Cheese_factory.MVVM.View.UC.ProductionControlUC.StorageControl"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-            
-             xmlns:viewModel="clr-namespace:Cheese_factory.MVVM.ViewModel.FarmControlUCVM"
-             d:DataContext="{d:DesignInstance Type=viewModel:FeedingEmployeeControlVM}"
+             xmlns:local="clr-namespace:Cheese_factory.MVVM.View.UC.ProductionControlUC"
+             xmlns:viewModel="clr-namespace:Cheese_factory.MVVM.ViewModel.ProductionControlUCVM"
+             d:DataContext="{d:DesignInstance Type=viewModel:StorageControlVM}"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
+
         <Grid.RowDefinitions>
             <RowDefinition/>
             <RowDefinition/>
@@ -18,11 +19,10 @@
             <Border Width="25"/>
             <DataGrid 
                 AutoGenerateColumns="False" IsReadOnly="True" FontSize="18"
-                ItemsSource="{Binding FeedingEmployees}" SelectedItem="{Binding SelectedFeedingEmployee}">
+                ItemsSource="{Binding Storages }" SelectedItem="{Binding SelectedStorage}">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="ID" Width="100" Binding="{Binding ID}"/>
-                    <DataGridTextColumn Header="FK_Сотрудник" Width="200" Binding="{Binding EmployeeFK}"/>
-                    <DataGridTextColumn Header="FK_Кормежка" Width="200" Binding="{Binding FeedingFK}"/>
+                    <DataGridTextColumn Header="Площадь\кв.м" Width="200" Binding="{Binding FloorArea}"/>
                 </DataGrid.Columns>
 
                 <DataGrid.InputBindings>
@@ -33,30 +33,18 @@
             </DataGrid>
         </StackPanel>
 
+
         <StackPanel Grid.Row="1" Orientation="Horizontal">
             <Border Width="25"/>
             <StackPanel>
                 <Border Height="25"/>
+
                 <StackPanel Orientation="Horizontal">
-                    <TextBlock  Text="Сотрудник: " FontSize="22" Width="200"/>
+                    <TextBlock  Text="Площадь ячейки: " FontSize="22" Width="200"/>
                     <Border Width="25"/>
-                    <ComboBox 
-                        Width="250"
-                        ItemsSource="{Binding Path=Employees}" 
-                        SelectedItem="{Binding Path=SelectedEmployee}"  
-                        DisplayMemberPath="Surname"/>
+                    <TextBox FontSize="25" Width="250" Text="{Binding FloorArea}"/>
                 </StackPanel>
-                <Border Height="20"/>
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock  Text="Кормежка: " FontSize="22" Width="200"/>
-                    <Border Width="25"/>
-                    <ComboBox 
-                        Width="250"
-                        ItemsSource="{Binding Path=Feeding}" 
-                        SelectedItem="{Binding Path=SelectedFeeding}"  
-                        DisplayMemberPath="ID"/>
-                </StackPanel>
-               
+                
 
                 <Border Height="25"/>
 

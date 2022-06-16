@@ -30,7 +30,14 @@
                 <Button  Content="Оборудование" Height="75" FontSize="20" Command="{Binding EquipmentCommand}"/>
             </StackPanel>
 
-            
+            <StackPanel Grid.Column="1" Grid.Row="0">
+                <Button  Content="Хранилище" Height="75" FontSize="20" Command="{Binding StorageCommand}"/>
+            </StackPanel>
+
+            <StackPanel Grid.Column="2" Grid.Row="0">
+                <Button  Content="Этап обработки" Height="75" FontSize="20" Command="{Binding EquipmentCommand}"/>
+            </StackPanel>
+
 
         </Grid>
 
