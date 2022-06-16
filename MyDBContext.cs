@@ -25,7 +25,7 @@ namespace Cheese_factory
         public DbSet<FeedWarehouse> FeedWarehouses { get; set; } // склада корма
         public DbSet<Equipment> Equipments { get; set; } // оборудования
         public DbSet<Cheese> Cheeses { get; set; } // сыры
-        public DbSet<Batch> Consignments { get; set; } // партии
+        public DbSet<Batch> Batches { get; set; } // партии
         public DbSet<BatchCheese> BatchCheeses { get; set; } // партии сыра
         public DbSet<Storage> Storages { get; set; } // хранилища
         public DbSet<UsedStorage> UsedStorages { get; set; } // занятые хранилища

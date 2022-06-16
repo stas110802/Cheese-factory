@@ -14,6 +14,6 @@ namespace Cheese_factory.MVVM.Model
         public int ID { get; set; }
 
         [Column("Уникальный_номер")]
-        public int UIDConsignment { get; set; }
+        public string UIDConsignment { get; set; }
     }
 }

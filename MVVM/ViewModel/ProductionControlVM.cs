@@ -21,6 +21,10 @@ namespace Cheese_factory.MVVM.ViewModel
             _screenFrame = new Frame();
             EquipmentCommand = _screenFrame.GetNavigationCommand(new EquipmentControl());
             StorageCommand = _screenFrame.GetNavigationCommand(new StorageControl());
+            ProcessingStepCommand = _screenFrame.GetNavigationCommand(new ProcessingStepControl());
+            BatchCommand = _screenFrame.GetNavigationCommand(new BatchControl());
+            CheeseCommand = _screenFrame.GetNavigationCommand(new CheeseControl());
+            BatchCheeseCommand = _screenFrame.GetNavigationCommand(new BatchCheeseControl());
         }
 
         public Frame ScreenFrame
@@ -31,6 +35,9 @@ namespace Cheese_factory.MVVM.ViewModel
 
         public BaseCommand EquipmentCommand { get; private set; }// оборудование 
         public BaseCommand StorageCommand { get; private set; }// хранилища
-
+        public BaseCommand ProcessingStepCommand { get; private set; }// хранилища
+        public BaseCommand BatchCommand { get; private set; }// партия
+        public BaseCommand CheeseCommand { get; private set; }// сыр
+        public BaseCommand BatchCheeseCommand { get; private set; }// партия сыра
     }
 }

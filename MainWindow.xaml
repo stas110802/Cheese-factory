@@ -5,9 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Cheese_factory"
         xmlns:viewmodels="clr-namespace:Cheese_factory.MVVM.ViewModel"
-        d:DataContext="{d:DesignInstance Type=viewmodels:MainWindowVM}"
+        
         mc:Ignorable="d"
-        Title="MainWindow" Height="700" Width="900">
+        Title="MainWindow" Height="800" Width="900">
     <Window.Resources>
         
     </Window.Resources>
