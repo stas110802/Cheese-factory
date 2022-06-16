@@ -13,7 +13,7 @@ namespace Cheese_factory.MVVM.Model
         [Column("ID_Оборудование")]
         public int ID { get; set; }
 
-        [Column("Название")]
+        [Column("Устройство")]
         public string Name { get; set; }
 
         [Column("Модель")]

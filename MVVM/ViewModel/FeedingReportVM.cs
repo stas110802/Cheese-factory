@@ -16,22 +16,23 @@ namespace Cheese_factory.MVVM.ViewModel
     {
         private MyDBContext _dbContext;
 
-        private ObservableCollection<FeedingReport> _feedingReports;
+        private ObservableCollection<Feeding> _feedingReports;  
         private ObservableCollection<Feed> _feeds;
 
-        private FeedingReport _selectedFeedingReport;
+        private Feeding _selectedFeeding;
         private Feed _selectedFeed;
 
         private int _countFeed;
+        private int _totalCountFeed;
         private DateTime _feedingDate;
 
         public FeedingReportVM()
         {
             _dbContext = new MyDBContext();
 
-            _feedingReports = new ObservableCollection<FeedingReport>();
+            _feedingReports = new ObservableCollection<Feeding>();
             _feeds = new ObservableCollection<Feed>();
-            _selectedFeedingReport = new FeedingReport();
+            _selectedFeeding = new Feeding();
             _selectedFeed = new Feed();
 
             DBContextCommands.AddItemsIntoCollection(_feedingReports, _dbContext.FeedingReports);
@@ -40,7 +41,7 @@ namespace Cheese_factory.MVVM.ViewModel
             ((IDbBaseCommand)this).InitCommands();
         }
 
-        public ObservableCollection<FeedingReport> FeedingReports
+        public ObservableCollection<Feeding> FeedingReports
         {
             get => _feedingReports;
             set => Set(ref _feedingReports, value, nameof(FeedingReports));
@@ -52,10 +53,10 @@ namespace Cheese_factory.MVVM.ViewModel
             set => Set(ref _feeds, value, nameof(Feeds));
         }
 
-        public FeedingReport SelectedFeedingReport
+        public Feeding SelectedFeeding
         {
-            get => _selectedFeedingReport;
-            set => Set(ref _selectedFeedingReport, value, nameof(SelectedFeedingReport));
+            get => _selectedFeeding;
+            set => Set(ref _selectedFeeding, value, nameof(SelectedFeeding));
         }
 
         public Feed SelectedFeed
@@ -68,6 +69,12 @@ namespace Cheese_factory.MVVM.ViewModel
         {
             get => _countFeed;
             set => Set(ref _countFeed, value, nameof(CountFeed));
+        }
+
+        public int TotalCountFeed
+        {
+            get => _totalCountFeed;
+            set => Set(ref _totalCountFeed, value, nameof(TotalCountFeed));
         }
 
         public DateTime FeedingDate
@@ -84,11 +91,12 @@ namespace Cheese_factory.MVVM.ViewModel
         
         void IInitializeCommands.AddItem(object args)
         {
-            var item = new FeedingReport()
+            var item = new Feeding()
             {
-                ID = SelectedFeedingReport.ID,
+                ID = SelectedFeeding.ID,
                 FeedFK = SelectedFeed.ID,
                 CountFeed = CountFeed,
+                TotalCountFeed = TotalCountFeed,
                 FeedingDate = FeedingDate
             };
             DBContextCommands.AddItem(_dbContext, _dbContext.FeedingReports, item);
@@ -98,7 +106,7 @@ namespace Cheese_factory.MVVM.ViewModel
         {
             try
             {
-                DBContextCommands.DeleteItem(_dbContext, _dbContext.FeedingReports, SelectedFeedingReport);
+                DBContextCommands.DeleteItem(_dbContext, _dbContext.FeedingReports, SelectedFeeding);
                 MessageBox.Show("OK");
             }
             catch (Exception exception)
@@ -127,15 +135,16 @@ namespace Cheese_factory.MVVM.ViewModel
         {
             try
             {
-                var id = SelectedFeedingReport.ID;
+                var id = SelectedFeeding.ID;
                 var oldItem = _dbContext.FeedingReports.Find(id);
 
-                var newItem = new FeedingReport()
+                var newItem = new Feeding()
                 {
                     ID = id,
                     FeedFK = SelectedFeed.ID,
                     FeedingDate = FeedingDate,
-                    CountFeed = CountFeed
+                    CountFeed = CountFeed,
+                    TotalCountFeed = TotalCountFeed
                 };
 
                 DBContextCommands.ChangeExistingItem(_dbContext, oldItem, newItem);
@@ -151,9 +160,10 @@ namespace Cheese_factory.MVVM.ViewModel
         {
             try
             {
-                FeedingDate = SelectedFeedingReport.FeedingDate;
-                CountFeed = SelectedFeedingReport.CountFeed;
-                SelectedFeed = SelectedFeedingReport.Feed;
+                FeedingDate = SelectedFeeding.FeedingDate;
+                CountFeed = SelectedFeeding.CountFeed;
+                TotalCountFeed = SelectedFeeding.TotalCountFeed;
+                SelectedFeed = SelectedFeeding.Feed;
             }
             catch (Exception exception)
             {

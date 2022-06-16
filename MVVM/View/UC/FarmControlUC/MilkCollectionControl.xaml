@@ -7,7 +7,7 @@
              xmlns:viewmodels="clr-namespace:Cheese_factory.MVVM.ViewModel"
              d:DataContext="{d:DesignInstance Type=viewmodels:MilkCollectionControlVM}"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="600" d:DesignWidth="800">
     <Grid>
 
         <Grid.RowDefinitions>
@@ -22,9 +22,10 @@
                 ItemsSource="{Binding MilkCollections}" SelectedItem="{Binding SelectedMilkCollection}">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="ID" Width="100" Binding="{Binding ID}"/>
-                    <DataGridTextColumn Header="FK Рабочей пары" Width="200" Binding="{Binding WorkingCoupleFK}"/>
                     <DataGridTextColumn Header="Дата сбора" Width="150" Binding="{Binding CollectionDate}" />
                     <DataGridTextColumn Header="Количество" Width="150" Binding="{Binding Count}" />
+                    <DataGridTextColumn Header="FK Сотрудника" Width="200" Binding="{Binding EmployeeFK}"/>
+                    <DataGridTextColumn Header="FK Коровы" Width="200" Binding="{Binding CowFK}"/>
                 </DataGrid.Columns>
 
                 <DataGrid.InputBindings>
@@ -39,28 +40,43 @@
         <StackPanel Grid.Row="1" Orientation="Horizontal">
             <Border Width="25"/>
             <StackPanel>
-                <Border Height="25"/>
-                <StackPanel Orientation="Horizontal">
-                    <TextBlock  Text="Рабочие пары: " FontSize="22" Width="200"/>
-                    <Border Width="25"/>
-                    <ComboBox 
-                        x:Name="FeedComboBox" 
-                        Width="250"
-                        ItemsSource="{Binding Path=WorkingCouples}" 
-                        SelectedItem="{Binding Path=SelectedWorkingCouple}"  
-                        DisplayMemberPath="ID"/>
-                </StackPanel>
                 <Border Height="20"/>
                 <StackPanel Orientation="Horizontal">
                     <TextBlock  Text="Дата сбора: " FontSize="22" Width="200"/>
                     <Border Width="25"/>
                     <TextBox FontSize="25" Width="250" Text="{Binding CollectionDate}"/>
                 </StackPanel>
+
                 <Border Height="20"/>
+
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Text="Количество: " FontSize="22" Width="200"/>
                     <Border Width="25"/>
                     <TextBox FontSize="25" Width="250" Text="{Binding Count}"/>
+                </StackPanel>
+
+                <Border Height="20"/>
+
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock  Text="Сотрудник" FontSize="22" Width="200"/>
+                    <Border Width="25"/>
+                    <ComboBox 
+                        Width="250"
+                        ItemsSource="{Binding Path=Employees}" 
+                        SelectedItem="{Binding Path=SelectedEmployee}"  
+                        DisplayMemberPath="ID"/>
+                </StackPanel>
+
+                <Border Height="20"/>
+
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock  Text="Корова" FontSize="22" Width="200"/>
+                    <Border Width="25"/>
+                    <ComboBox 
+                        Width="250"
+                        ItemsSource="{Binding Path=Cows}" 
+                        SelectedItem="{Binding Path=SelectedCow}"  
+                        DisplayMemberPath="ID"/>
                 </StackPanel>
 
                 <Border Height="25"/>

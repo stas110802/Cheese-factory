@@ -17,10 +17,12 @@ namespace Cheese_factory.MVVM.ViewModel
         private MyDBContext _dbContext;
 
         private ObservableCollection<MilkCollection> _milkCollections;
-        private ObservableCollection<WorkingCouple> _workingCouples;
+        private ObservableCollection<Employee> _employees;
+        private ObservableCollection<Cow> _cows;
 
         private MilkCollection _selectedMilkCollection;
-        private WorkingCouple _selectedWorkingCouple;
+        private Employee _selectedEmployee;
+        private Cow _selectedCow;
 
         private DateTime _collectionDate;
         private int _count;
@@ -30,13 +32,16 @@ namespace Cheese_factory.MVVM.ViewModel
             _dbContext = new MyDBContext();
 
             _milkCollections = new ObservableCollection<MilkCollection>();
-            _workingCouples = new ObservableCollection<WorkingCouple>();
+            _employees = new ObservableCollection<Employee>();
+            _cows = new ObservableCollection<Cow>();
 
             _selectedMilkCollection = new MilkCollection();
-            _selectedWorkingCouple = new WorkingCouple();
+            _selectedEmployee = new Employee();
+            _selectedCow = new Cow();
 
-            DBContextCommands.AddItemsIntoCollection(_milkCollections, _dbContext.MilkCollections);
-            DBContextCommands.AddItemsIntoCollection(_workingCouples, _dbContext.WorkingCouples);
+            DBContextCommands.UpdateItems(_milkCollections, _dbContext.MilkCollections);
+            DBContextCommands.UpdateItems(_employees, _dbContext.Employees);
+            DBContextCommands.UpdateItems(_cows, _dbContext.Cows);
 
             ((IDbBaseCommand)this).InitCommands();
         }
@@ -47,11 +52,18 @@ namespace Cheese_factory.MVVM.ViewModel
             set => Set(ref _milkCollections, value, nameof(MilkCollections));
         }
 
-        public ObservableCollection<WorkingCouple> WorkingCouples
+        public ObservableCollection<Employee> Employees
         {
-            get => _workingCouples;
-            set => Set(ref _workingCouples, value, nameof(WorkingCouples));
+            get => _employees;
+            set => Set(ref _employees, value, nameof(Employees));
         }
+
+        public ObservableCollection<Cow> Cows
+        {
+            get => _cows;
+            set => Set(ref _cows, value, nameof(Cows));
+        }
+
 
         public MilkCollection SelectedMilkCollection
         {
@@ -59,10 +71,16 @@ namespace Cheese_factory.MVVM.ViewModel
             set => Set(ref _selectedMilkCollection, value, nameof(SelectedMilkCollection));
         }
 
-        public WorkingCouple SelectedWorkingCouple
+        public Employee SelectedEmployee
         {
-            get => _selectedWorkingCouple;
-            set => Set(ref _selectedWorkingCouple, value, nameof(SelectedWorkingCouple));
+            get => _selectedEmployee;
+            set => Set(ref _selectedEmployee, value, nameof(SelectedEmployee));
+        }
+
+        public Cow SelectedCow
+        {
+            get => _selectedCow;
+            set => Set(ref _selectedCow, value, nameof(SelectedCow));
         }
 
         public DateTime CollectionDate
@@ -92,7 +110,8 @@ namespace Cheese_factory.MVVM.ViewModel
         {
             var item = new MilkCollection()
             {
-                WorkingCoupleFK = _selectedWorkingCouple.ID,
+                EmployeeFK = SelectedEmployee.ID,
+                CowFK = SelectedCow.ID,
                 CollectionDate = _collectionDate,
                 Count = _count
             };
@@ -109,7 +128,8 @@ namespace Cheese_factory.MVVM.ViewModel
                 var newItem = new MilkCollection()
                 {
                     ID = id,
-                    WorkingCoupleFK = _selectedWorkingCouple.ID,
+                    EmployeeFK = SelectedEmployee.ID,
+                    CowFK = SelectedCow.ID,
                     Count = _count,
                     CollectionDate = _collectionDate
                 };
@@ -127,9 +147,10 @@ namespace Cheese_factory.MVVM.ViewModel
         {
             try
             {
+                SelectedCow = SelectedMilkCollection.Cow;
+                SelectedEmployee = SelectedMilkCollection.Employee;
                 Count = _selectedMilkCollection.Count;
                 CollectionDate = _selectedMilkCollection.CollectionDate;
-                SelectedWorkingCouple = _selectedMilkCollection.WorkingCouple;
             }
             catch (Exception ex)
             {
@@ -152,10 +173,12 @@ namespace Cheese_factory.MVVM.ViewModel
         void IInitializeCommands.UpdateItems(object args)
         {
             _milkCollections?.Clear();
-            _workingCouples?.Clear();
+            _employees?.Clear();
+            _cows?.Clear();
 
             DBContextCommands.UpdateItems(_milkCollections, _dbContext.MilkCollections);
-            DBContextCommands.UpdateItems(_workingCouples, _dbContext.WorkingCouples);
+            DBContextCommands.UpdateItems(_employees, _dbContext.Employees);
+            DBContextCommands.UpdateItems(_cows, _dbContext.Cows);
         }
     }
 }

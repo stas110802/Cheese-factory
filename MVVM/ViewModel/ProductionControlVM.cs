@@ -20,7 +20,6 @@ namespace Cheese_factory.MVVM.ViewModel
         {
             _screenFrame = new Frame();
             EquipmentCommand = _screenFrame.GetNavigationCommand(new EquipmentControl());
-            EmployeeEquipmentCommand = _screenFrame.GetNavigationCommand(new EmployeeEquipmentControl());
         }
 
         public Frame ScreenFrame

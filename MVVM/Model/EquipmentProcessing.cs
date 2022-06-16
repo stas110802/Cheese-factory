@@ -7,22 +7,19 @@ using System.Threading.Tasks;
 
 namespace Cheese_factory.MVVM.Model
 {
-    [Table("Оборудование_сотрудника")]
-    public class EmployeeEquipment
+    [Table("Обработка_оборудованием")]
+    public class EquipmentProcessing
     {
-        [Column("ID_ОС")]
+        [Column("ID_ОО")]
         public int ID { get; set; }
+
+        [Column("FK_Этап_обработки_партии_сыра")]
+        public int ProcessingStepBatchCheeseFK { get; set; }
 
         [Column("FK_Оборудование")]
         public int EquipmentFK { get; set; }
 
         [Column("FK_Сотрудник")]
         public int EmployeeFK { get; set; }
-
-        [ForeignKey(nameof(EquipmentFK))]
-        public virtual Equipment Equipment { get; set; }
-
-        [ForeignKey(nameof(EmployeeFK))]
-        public virtual Employee Employee { get; set; }
     }
 }

@@ -7,7 +7,7 @@
              xmlns:viewModel="clr-namespace:Cheese_factory.MVVM.ViewModel"
              d:DataContext="{d:DesignInstance Type=viewModel:FeedingReportVM}"
              mc:Ignorable="d" 
-             d:DesignHeight="550" d:DesignWidth="700">
+             d:DesignHeight="600" d:DesignWidth="700">
     <Grid>
 
         <Grid.RowDefinitions>
@@ -19,7 +19,7 @@
             <Border Width="25"/>
             <DataGrid 
                 AutoGenerateColumns="False" IsReadOnly="True" FontSize="18"
-                ItemsSource="{Binding FeedingReports}" SelectedItem="{Binding SelectedFeedingReport}">
+                ItemsSource="{Binding FeedingReports}" SelectedItem="{Binding SelectedFeeding}">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="ID" Width="100" Binding="{Binding ID}"/>
                     <DataGridTextColumn Header="FK Корм" Width="200" Binding="{Binding FeedFK}"/>
@@ -58,9 +58,17 @@
                 </StackPanel>
                 <Border Height="20"/>
                 <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="Корма потрачено: " FontSize="22" Width="200"/>
+                    <TextBlock Text="Корма в порции\кг: " FontSize="22" Width="200"/>
                     <Border Width="25"/>
                     <TextBox FontSize="25" Width="250" Text="{Binding CountFeed}"/>
+                </StackPanel>
+
+                <Border Height="25"/>
+
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Всего потрачено корма " FontSize="22" Width="200"/>
+                    <Border Width="25"/>
+                    <TextBox FontSize="25" Width="250" Text="{Binding TotalCountFeed}"/>
                 </StackPanel>
                 
                 <Border Height="25"/>

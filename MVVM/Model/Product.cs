@@ -18,5 +18,8 @@ namespace Cheese_factory.MVVM.Model
 
         [Column("Производитель")]
         public string Manufacturer { get; set; }
+
+        [Column("Цена")]
+        public float Price { get; set; }
     }
 }

@@ -1,5 +1,4 @@
-﻿using Cheese_factory.MVVM.ViewModel.ProductionControlUCVM;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,18 +12,19 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Cheese_factory.MVVM.ViewModel.FarmControlUCVM;
 
-namespace Cheese_factory.MVVM.View.UC.ProductionControlUC
+namespace Cheese_factory.MVVM.View.UC.FarmControlUC
 {
     /// <summary>
-    /// Логика взаимодействия для EmployeeEquipmentControl.xaml
+    /// Interaction logic for FeedingEmployeeControl.xaml
     /// </summary>
-    public partial class EmployeeEquipmentControl : UserControl
+    public partial class FeedingEmployeeControl : UserControl
     {
-        public EmployeeEquipmentControl()
+        public FeedingEmployeeControl()
         {
             InitializeComponent();
-            DataContext = new EmployeeEquipmentControlVM();
+            DataContext = new FeedingEmployeeControlVM();
         }
     }
 }

@@ -15,20 +15,5 @@ namespace Cheese_factory.MVVM.Model
 
         [Column("Этап_обработки")]
         public string Step { get; set; }
-
-        [Column("Дата_начала_обработки")]
-        public DateTime ProcessingStartDate { get; set; }
-
-        [Column("FK_Партия_сыра")]
-        public int BatchCheeseFK { get; set; }
-
-        [Column("FK_Оборудование_сотрудника")]
-        public int EmployeeEquipmentFK { get; set; }
-
-        [ForeignKey(nameof(EmployeeEquipmentFK))]
-        public virtual EmployeeEquipment EmployeeEquipment { get; set; }
-
-        [ForeignKey(nameof(BatchCheeseFK))]
-        public virtual BatchCheese BatchCheese { get; set; }
     }
 }
