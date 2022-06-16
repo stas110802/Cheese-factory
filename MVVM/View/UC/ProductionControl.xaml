@@ -50,6 +50,10 @@
                 <Button  Content="Партия сыра" Height="75" FontSize="20" Command="{Binding BatchCheeseCommand}"/>
             </StackPanel>
 
+            <StackPanel Grid.Column="0" Grid.Row="2">
+                <Button  Content="Занятые хранилища" Height="75" FontSize="20" Command="{Binding UsedStorageCommand}"/>
+            </StackPanel>
+
         </Grid>
 
         <Grid Grid.Row="1">

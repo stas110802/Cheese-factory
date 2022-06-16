@@ -25,6 +25,7 @@ namespace Cheese_factory.MVVM.ViewModel
             BatchCommand = _screenFrame.GetNavigationCommand(new BatchControl());
             CheeseCommand = _screenFrame.GetNavigationCommand(new CheeseControl());
             BatchCheeseCommand = _screenFrame.GetNavigationCommand(new BatchCheeseControl());
+            //UsedStorageCommand = _screenFrame.GetNavigationCommand(new UsedStorageControl());
         }
 
         public Frame ScreenFrame
@@ -39,5 +40,6 @@ namespace Cheese_factory.MVVM.ViewModel
         public BaseCommand BatchCommand { get; private set; }// партия
         public BaseCommand CheeseCommand { get; private set; }// сыр
         public BaseCommand BatchCheeseCommand { get; private set; }// партия сыра
+        public BaseCommand UsedStorageCommand { get; private set; }// занятые хранилища
     }
 }

@@ -1,0 +1,90 @@
+﻿<UserControl x:Class="Cheese_factory.MVVM.View.UC.ProductionControlUC.UsedStorageControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Cheese_factory.MVVM.View.UC.ProductionControlUC"
+             xmlns:viewModel="clr-namespace:Cheese_factory.MVVM.ViewModel.ProductionControlUCVM"
+             d:DataContext="{d:DesignInstance Type=viewModel:UsedStorageControlVM}"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" Orientation="Horizontal">
+            <Border Width="25"/>
+            <DataGrid 
+                AutoGenerateColumns="False" IsReadOnly="True" FontSize="18"
+                ItemsSource="{Binding UsedStorages }" SelectedItem="{Binding SelectedUsedStorage}">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="ID" Width="100" Binding="{Binding ID}"/>
+                    <DataGridTextColumn Header="Дата поступления" Width="180" Binding="{Binding ReceiptDate}"/>
+                    <DataGridTextColumn Header="FK Партии сыра" Width="150" Binding="{Binding BatchCheeseFK}"/>
+                    <DataGridTextColumn Header="FK Хранилища" Width="150" Binding="{Binding StorageFK}"/>
+                </DataGrid.Columns>
+
+                <DataGrid.InputBindings>
+                    <MouseBinding
+                        MouseAction="LeftDoubleClick"
+                        Command="{Binding TableClickCommand}"/>
+                </DataGrid.InputBindings>
+            </DataGrid>
+        </StackPanel>
+
+
+        <StackPanel Grid.Row="1" Orientation="Horizontal">
+            <Border Width="25"/>
+            <StackPanel>
+                <Border Height="25"/>
+
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock  Text="Дата поступления: " FontSize="22" Width="200"/>
+                    <Border Width="25"/>
+                    <TextBox FontSize="25" Width="250" Text="{Binding Date}"/>
+                </StackPanel>
+
+                <Border Height="25"/>
+
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock  Text="FK Партии сыра: " FontSize="22" Width="200"/>
+                    <Border Width="25"/>
+                    <ComboBox 
+                        Width="250"
+                        ItemsSource="{Binding Path=BatchCheeses}" 
+                        SelectedItem="{Binding Path=SelectedBatchCheese}"  
+                        DisplayMemberPath="Name"/>
+                </StackPanel>
+
+                <Border Height="25"/>
+
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock  Text="FK Хранилища: " FontSize="22" Width="200"/>
+                    <Border Width="25"/>
+                    <ComboBox 
+                        Width="250"
+                        ItemsSource="{Binding Path=Storages}" 
+                        SelectedItem="{Binding Path=SelectedStorage}"  
+                        DisplayMemberPath="UIDConsignment"/>
+                </StackPanel>
+
+                <Border Height="25"/>
+
+                <StackPanel Grid.Row="0" Orientation="Horizontal">
+                    <Border Width="50"/>
+                    <Button Content="Add" FontSize="20" Width="100" Command="{Binding AddItemCommand}"/>
+                    <Border Width="50"/>
+                    <Button Content="Delete" FontSize="20" Width="100" Command="{Binding DeleteItemCommand}"/>
+                    <Border Width="50"/>
+                    <Button Content="Update" FontSize="20" Width="100" Command="{Binding UpdateItemsCommand}"/>
+                    <Border Width="50"/>
+                    <Button Content="Change" FontSize="20" Width="100" Command="{Binding ChangeItemCommand}"/>
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
+
+    </Grid>
+</UserControl>
